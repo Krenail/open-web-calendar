@@ -398,13 +398,13 @@ function loadCalendar() {
  * see https://docs.dhtmlx.com/scheduler/agenda_view.html
  */
 
-scheduler.date.agenda_start = function(date){
-  return scheduler.date.month_start(new Date(date));
-};
+var agenda_start = new Date(specification["date"] ? parseDate(specification["date"]) : new Date());
+agenda_start.setHours(0,0,0,0);
+var agenda_end = new Date();
+agenda_end.setDate(agenda_start.getDate() + 30);
 
-scheduler.date.add_agenda = function(date, inc){
-  return scheduler.date.add(date, inc, "month");
-};
+scheduler.config.agenda_start = agenda_start;
+scheduler.config.agenda_end = agenda_end;
 
 /* Customize the week view
  *
